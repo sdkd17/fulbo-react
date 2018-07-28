@@ -1,5 +1,6 @@
+import { Table } from 'react-materialize';
+import UsersTableItem from './UsersTableItem';
 import React, {Component} from 'react';
-import User from './User';
 
 class Users extends Component {
 
@@ -13,15 +14,33 @@ class Users extends Component {
 			(users) => {this.setState({ users });
       	});
 		// fetch("/users").then(res => console.log(res));
+		
 	}
 
 	render(){
 		return (
-			<div>
-			{this.state.users.map((user) => {
-				return <User nick={user.nick}/>
-			})}
-			</div>
+			
+			<Table header="Usuarios">
+				<thead>
+					<tr>
+						<th data-field="id"> ID </th>
+						<th data-field="nickname"> Nickname </th>
+						<th data-field="email"> Email </th>
+						<th data-field="nombre"> Nombre </th>
+						<th data-field="apellido"> Apellido </th>
+						<th data-field="nacimiento"> Nacimiento </th>
+						<th data-field="descripcion"> Descripcion </th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{this.state.users.map((user) => {
+		 				return <UsersTableItem user={user}/>
+		 			})}
+				</tbody>
+				
+			</Table>
+			
 		);
 	}
 }
